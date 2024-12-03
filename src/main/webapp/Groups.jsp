@@ -47,6 +47,26 @@
             font-size: 1.5em;
             color: #333;
         }
+        .back-button {
+            padding: 12px 24px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            width: 100px; /* Kenglikni o'zingizga moslashtirishingiz mumkin */
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .back-button:focus {
+            outline: none;
+        }
 
         .module-card form button {
             padding: 10px 20px;
@@ -69,6 +89,7 @@
     <h1>Groups for Module</h1>
     <%
         int moduleId = Integer.parseInt(request.getParameter("moduleId"));
+        Module module = ModuleRepo.getById(moduleId);
         List<Groups> groupsList = GroupsRepo.getGroupsList(moduleId);
 
         if (groupsList != null && !groupsList.isEmpty()) {
@@ -76,7 +97,8 @@
     %>
     <div class="module-card">
         <div>
-            <h3><%= group.getName() %></h3>
+            <h3><%= group.getName() %>
+            </h3>
         </div>
         <form action="/Students.jsp" method="post">
             <input type="hidden" name="groupId" value="<%=group.getId()%>">
@@ -91,6 +113,10 @@
     <%
         }
     %>
+    <form action="/Module.jsp" method="post">
+        <input type="hidden" name="courseId" value="<%=module.getCourse().getId()%>">
+        <button type="submit" class="back-button">BACK</button>
+    </form>
 </div>
 
 </body>

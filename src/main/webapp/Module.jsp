@@ -14,6 +14,26 @@
             margin: 0;
             padding: 20px;
         }
+        .back-button {
+            padding: 12px 24px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            width: 100px; /* Kenglikni o'zingizga moslashtirishingiz mumkin */
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .back-button:focus {
+            outline: none;
+        }
 
         .container {
             max-width: 1200px;
@@ -89,6 +109,9 @@
     <%
         }
     %>
+    <form action="/Course.jsp" method="post">
+        <button type="submit" class="back-button">BACK</button>
+    </form>
 </div>
 
 </body>

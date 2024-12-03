@@ -22,4 +22,14 @@ public class ModuleRepo {
             throw new RuntimeException(e);
         }
     }
+
+    public static Module getById(int moduleId) {
+        try (
+                EntityManager em = EMF.createEntityManager();
+        ) {
+            return em.find(Module.class, moduleId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

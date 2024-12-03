@@ -16,7 +16,26 @@
             margin: 0;
             padding: 20px;
         }
+        .back-button {
+            padding: 12px 24px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            width: 100px; /* Kenglikni o'zingizga moslashtirishingiz mumkin */
+        }
 
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .back-button:focus {
+            outline: none;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -69,6 +88,7 @@
     <h1>Students for Group</h1>
     <%
         int groupId = Integer.parseInt(request.getParameter("groupId"));
+        Groups group = GroupsRepo.getById(groupId);
         List<Student> studentList = StudentsRepo.getStudentsList(groupId);
         if (studentList != null && !studentList.isEmpty()) {
             for (Student student : studentList) {
@@ -85,12 +105,18 @@
     </div>
     <%
         }
+
     } else {
     %>
     <p>No modules found for this course.</p>
     <%
         }
+
     %>
+    <form action="/Groups.jsp" method="post">
+        <input type="hidden" name="moduleId" value="<%=group.getModule().getId()%>">
+        <button type="submit"class="back-button">BACK</button>
+    </form>
 </div>
 </body>
 </html>
