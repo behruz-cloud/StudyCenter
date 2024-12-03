@@ -16,6 +16,7 @@
             margin: 0;
             padding: 20px;
         }
+
         .back-button {
             padding: 12px 24px;
             background-color: #6c757d;
@@ -36,6 +37,7 @@
         .back-button:focus {
             outline: none;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,18 +106,12 @@
         </form>
     </div>
     <%
+            }
         }
-
-    } else {
-    %>
-    <p>No modules found for this course.</p>
-    <%
-        }
-
     %>
     <form action="/Groups.jsp" method="post">
         <input type="hidden" name="moduleId" value="<%=group.getModule().getId()%>">
-        <button type="submit"class="back-button">BACK</button>
+        <button type="submit" class="back-button">BACK</button>
     </form>
 </div>
 </body>
