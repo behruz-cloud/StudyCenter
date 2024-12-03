@@ -42,7 +42,7 @@
 %>
 <div class="course-container">
     <span><%= course.getName() %></span>
-    <form action="" method="post">
+    <form action="/Module.jsp" method="post">
         <input type="hidden" name="courseId" value="<%=course.getId()%>">
     <button>View Directions</button>
     </form>
