@@ -55,10 +55,8 @@
         </thead>
         <tbody>
         <%
-            // JSP pagega report ma'lumotlarini olish
             List<Object[]> reportData = CourserRepo.getReport();
 
-            // Har bir qatorni chiqarish
             for (Object[] data : reportData) {
                 String courseName = (String) data[0];
                 Long studentCount = (Long) data[1];
@@ -72,6 +70,9 @@
         <% } %>
         </tbody>
     </table>
+    <form action="/Course.jsp" method="post">
+        <button type="submit" class="back-button">COURSE PAGE</button>
+    </form>
 </div>
 </body>
 </html>

@@ -104,6 +104,9 @@
     <%
         }
     %>
+    <form action="/Report.jsp" method="post">
+        <button type="submit" class="back-button">REPORT</button>
+    </form>
 
 </div>
 
