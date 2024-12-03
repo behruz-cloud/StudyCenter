@@ -12,4 +12,5 @@ public class Student {
     private String name;
     @ManyToOne
     private Groups groups;
+    private Integer amount;
 }
