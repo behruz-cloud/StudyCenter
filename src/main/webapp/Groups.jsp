@@ -1,12 +1,14 @@
-<%@ page import="uz.pdp.studycenter.Repo.CourserRepo" %>
-<%@ page import="uz.pdp.studycenter.entity.Course" %>
+<%@ page import="uz.pdp.studycenter.Repo.ModuleRepo" %>
+<%@ page import="uz.pdp.studycenter.entity.Module" %>
 <%@ page import="java.util.List" %>
+<%@ page import="uz.pdp.studycenter.entity.Groups" %>
+<%@ page import="uz.pdp.studycenter.Repo.GroupsRepo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>Groups page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,72 +29,56 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 30px;
         }
 
-        .course-card {
+        .module-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px;
             margin-bottom: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
+            background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s;
         }
 
-        .course-card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .course-card span {
-            font-size: 1.2em;
+        .module-card h3 {
+            margin: 0;
+            font-size: 1.5em;
             color: #333;
         }
 
-        .course-card form button {
+        .module-card form button {
             padding: 10px 20px;
             background-color: #007bff;
-            color: white;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
         }
 
-        .course-card form button:hover {
+        .module-card form button:hover {
             background-color: #0056b3;
-        }
-
-        @media (max-width: 768px) {
-            .course-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .course-card form button {
-                width: 100%;
-                margin-top: 10px;
-            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Available Courses</h1>
-
+    <h1>Groups for Module</h1>
     <%
-        List<Course> coursesList = CourserRepo.getCoursesList();
-        if (coursesList != null && !coursesList.isEmpty()) {
-            for (Course course : coursesList) {
+        int moduleId = Integer.parseInt(request.getParameter("moduleId"));
+        List<Groups> groupsList = GroupsRepo.getGroupsList(moduleId);
+
+        if (groupsList != null && !groupsList.isEmpty()) {
+            for (Groups group : groupsList) {
     %>
-    <div class="course-card">
-        <span><%= course.getName() %></span>
-        <form action="/Module.jsp" method="post">
-            <input type="hidden" name="courseId" value="<%=course.getId()%>">
+    <div class="module-card">
+        <div>
+            <h3><%= group.getName() %></h3>
+        </div>
+        <form action="/Students.jsp" method="post">
             <button type="submit">View Directions</button>
         </form>
     </div>
@@ -100,11 +86,10 @@
         }
     } else {
     %>
-    <p>No courses available.</p>
+    <p>No modules found for this course.</p>
     <%
         }
     %>
-
 </div>
 
 </body>

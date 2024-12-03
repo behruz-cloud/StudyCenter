@@ -77,6 +77,7 @@
             <h3><%= module.getName() %></h3>
         </div>
         <form action="/Groups.jsp" method="post">
+            <input type="hidden" name="moduleId" value="<%=module.getId()%>">
             <button type="submit">View Directions</button>
         </form>
     </div>
