@@ -1,10 +1,8 @@
-<%@ page import="uz.pdp.studycenter.Repo.ModuleRepo" %>
-<%@ page import="uz.pdp.studycenter.entity.Module" %>
 <%@ page import="java.util.List" %>
-<%@ page import="uz.pdp.studycenter.entity.Groups" %>
-<%@ page import="uz.pdp.studycenter.Repo.GroupsRepo" %>
 <%@ page import="uz.pdp.studycenter.Repo.StudentsRepo" %>
 <%@ page import="uz.pdp.studycenter.entity.Student" %>
+<%@ page import="uz.pdp.studycenter.Repo.GroupsRepo" %>
+<%@ page import="uz.pdp.studycenter.entity.Groups" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -72,17 +70,16 @@
     <%
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         List<Student> studentList = StudentsRepo.getStudentsList(groupId);
-
         if (studentList != null && !studentList.isEmpty()) {
             for (Student student : studentList) {
     %>
     <div class="module-card">
         <div>
-            <h3><%= student.getName() + " ---- " + student.getAmount()+" 000 so'm"%>
+            <h3><%= student.getName() + " ---- " + student.getAmount() + " 000 so'm"%>
             </h3>
         </div>
         <form action="/Payments.jsp" method="post">
-            <input type="hidden" name="groupId" value="<%=student.getId()%>">
+            <input type="hidden" name="studentId" value="<%=student.getId()%>">
             <button type="submit">+Add Payment</button>
         </form>
     </div>
@@ -95,6 +92,5 @@
         }
     %>
 </div>
-
 </body>
 </html>

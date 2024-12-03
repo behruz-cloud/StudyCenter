@@ -12,9 +12,8 @@ public class ModuleRepo {
     public static List<Module> getModulesList(Integer id) {
         try (EntityManager em = EMF.createEntityManager()) {
             Course course = em.find(Course.class, id);
-
             if (course != null) {
-                return em.createQuery("SELECT m FROM Module m WHERE m.course = :course", Module.class)
+                return em.createQuery("select m from Module m where m.course = :course", Module.class)
                         .setParameter("course", course)
                         .getResultList();
             }
